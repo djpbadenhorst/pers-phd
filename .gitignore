@@ -1,0 +1,10 @@
+*~
+*.pyc
+*.node
+*.log
+*.fmt
+check.tex
+_region_.tex
+_region_.prv
+/venv/
+/images/

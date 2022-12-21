@@ -1,0 +1,407 @@
+\documentclass[fleqn]{minimal}
+
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{color}
+
+\usetikzlibrary{shapes, backgrounds}
+
+\begin{document}
+
+\section{Integrate over $p$}
+
+\begin{align*}
+  \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp
+  & = \int \dfrac{\sqrt{p}}{\sqrt{2\pi}}
+  exp
+  \left\{
+    - \dfrac{p}{2}
+    \left( y - \underline{x}'\underline{w} \right)^2
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Sigma \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{x} - \underline{\mu}\right)'
+    \Sigma^{-1}
+    \left( \underline{x} - \underline{\mu}\right)
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi\lambda}}
+  \exp
+  \left\{
+    - \dfrac{1}{2\lambda}
+    \left(y - \tau\right)^2
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Phi \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{w} - \underline{\theta}\right)'
+    \Phi^{-1}
+    \left( \underline{w} - \underline{\theta}\right)
+  \right\} \\
+  & \times
+  \dfrac{1}{\psi^\nu \Gamma(\nu)}
+  p^{\nu-1}
+  exp
+  \left\{
+    - \dfrac{p}{\psi}
+  \right\}
+  dp
+\end{align*}
+\begin{align*}
+  \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp
+  & = \int \dfrac{\sqrt{p}}{\sqrt{2\pi}}
+  exp
+  \left\{
+    - \dfrac{p}{2}
+    \left( y - \underline{x}'\underline{w} \right)^2
+  \right\}
+  \dfrac{1}{\psi^\nu \Gamma(\nu)}
+  p^{\nu-1}
+  exp
+  \left\{
+    - \dfrac{p}{\psi}
+  \right\}
+  dp \\ 
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Sigma \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{x} - \underline{\mu}\right)'
+    \Sigma^{-1}
+    \left( \underline{x} - \underline{\mu}\right)
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi\lambda}}
+  \exp
+  \left\{
+    - \dfrac{1}{2\lambda}
+    \left(y - \tau\right)^2
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Phi \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{w} - \underline{\theta}\right)'
+    \Phi^{-1}
+    \left( \underline{w} - \underline{\theta}\right)
+  \right\}
+\end{align*}
+\begin{align*}
+  \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp
+  & = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \int p^{1/2}
+  exp
+  \left\{
+    - \dfrac{p}{2}
+    \left( y - \underline{x}'\underline{w} \right)^2
+  \right\}
+  p^{\nu-1}
+  exp
+  \left\{
+    - \dfrac{p}{\psi}
+  \right\}
+  dp \\ 
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Sigma \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{x} - \underline{\mu}\right)'
+    \Sigma^{-1}
+    \left( \underline{x} - \underline{\mu}\right)
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi\lambda}}
+  \exp
+  \left\{
+    - \dfrac{1}{2\lambda}
+    \left(y - \tau\right)^2
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Phi \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{w} - \underline{\theta}\right)'
+    \Phi^{-1}
+    \left( \underline{w} - \underline{\theta}\right)
+  \right\}
+\end{align*}
+\begin{align*}
+  \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp
+  & = \kappa_1 \\ 
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Sigma \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{x} - \underline{\mu}\right)'
+    \Sigma^{-1}
+    \left( \underline{x} - \underline{\mu}\right)
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi\lambda}}
+  \exp
+  \left\{
+    - \dfrac{1}{2\lambda}
+    \left(y - \tau\right)^2
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Phi \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{w} - \underline{\theta}\right)'
+    \Phi^{-1}
+    \left( \underline{w} - \underline{\theta}\right)
+  \right\}
+\end{align*}
+
+\subsection{Consider $\kappa_1$}
+\begin{align*}
+  \kappa_1 = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \int p^{1/2}
+  exp
+  \left\{
+    - \dfrac{p}{2}
+    \left( y - \underline{x}'\underline{w} \right)^2
+  \right\}
+  p^{\nu-1}
+  exp
+  \left\{
+    - \dfrac{p}{\psi}
+  \right\}
+  dp
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \int
+  p^{\left(\nu+1/2\right) - 1}
+  exp
+  \left\{
+    - p
+    \left(
+      \dfrac{1}{2}
+      \left( y - \underline{x}'\underline{w} \right)^2
+      + \dfrac{1}{\psi}
+    \right)
+  \right\}
+  dp
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \dfrac
+  {
+    \Gamma\left(\nu+1/2\right)
+  }
+  {
+    \left[
+      \dfrac{1}{2}
+      \left( y - \underline{x}'\underline{w} \right)^2
+      + \dfrac{1}{\psi}
+    \right]^{\left(\nu+1/2\right)}
+  }
+  \int
+  \dfrac
+  {
+    \left[
+      \dfrac{1}{2}
+      \left( y - \underline{x}'\underline{w} \right)^2
+      + \dfrac{1}{\psi}
+    \right]^{\left(\nu+1/2\right)}
+  }
+  {
+    \Gamma\left(\nu+1/2\right)
+  }
+  \ 
+  p^{\left(\nu+1/2\right) - 1}
+  exp
+  \left\{
+    - p
+    \left(
+      \dfrac{1}{2}
+      \left( y - \underline{x}'\underline{w} \right)^2
+      + \dfrac{1}{\psi}
+    \right)
+  \right\}
+  dp
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \Gamma\left(\nu+1/2\right)
+  \left[
+    \dfrac{1}{2}
+    \left( y - \underline{x}'\underline{w} \right)^2
+    + \dfrac{1}{\psi}
+  \right]^{-\left(\nu+1/2\right)}
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \Gamma\left(\dfrac{2\nu+1}{2}\right)
+  \left\{
+    \left[
+      \dfrac{1}{\psi}
+    \right]
+    \left[
+      \dfrac{\psi}{2}
+      \left( y - \underline{x}'\underline{w} \right)^2
+      + 1
+    \right]
+  \right\}^{-\dfrac{2\nu+1}{2}}
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \left(\psi\right)^{\dfrac{2\nu+1}{2}}
+  \Gamma\left(\dfrac{2\nu+1}{2}\right)
+  \left[
+    1+
+    \dfrac
+    {
+      \nu\psi\left( y - \underline{x}'\underline{w} \right)^2
+    }
+    {
+      2\nu
+    }
+  \right]^{-\dfrac{2\nu+1}{2}}
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\sqrt{2\pi}\psi^\nu \Gamma(\nu)}
+  \psi^\nu\sqrt{\psi} \
+  \sqrt{2\nu\pi} \ \Gamma\left(\dfrac{2\nu}{2}\right)
+  \dfrac
+  {
+    \Gamma\left(\dfrac{2\nu+1}{2}\right)
+  }
+  {
+    \sqrt{2\nu\pi} \ \Gamma\left(\dfrac{2\nu}{2}\right)
+  }
+  \left[
+    1+
+    \dfrac
+    {
+      \left[\sqrt{\nu\psi}\left( y - \underline{x}'\underline{w}\right) \right]^2
+    }
+    {
+      2\nu
+    }
+  \right]^{-\dfrac{2\nu+1}{2}}
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  = \dfrac{1}{\Gamma(\nu)}
+  \sqrt{\psi} \
+  \sqrt{\nu} \ \Gamma\left(\nu\right)
+  \dfrac
+  {
+    \Gamma\left(\dfrac{2\nu+1}{2}\right)
+  }
+  {
+    \sqrt{2\nu\pi} \ \Gamma\left(\dfrac{2\nu}{2}\right)
+  }
+  \left[
+    1+
+    \dfrac
+    {
+      \left[\sqrt{\nu\psi}\left( y - \underline{x}'\underline{w}\right) \right]^2
+    }
+    {
+      2\nu
+    }
+  \right]^{-\dfrac{2\nu+1}{2}}
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  \approx
+  \dfrac{1}{\Gamma(\nu)}
+  \sqrt{\psi} \
+  \sqrt{\nu} \ \Gamma\left(\nu\right)
+  \dfrac{1}{\sqrt{2\pi\dfrac{\nu}{\nu-1}}}
+  exp
+  \left\{
+    -\dfrac{1}{2\dfrac{\nu}{\nu-1}}
+  \left[\sqrt{\nu\psi}\left( y - \underline{x}'\underline{w}\right) \right]^2
+  \right\}
+  \ \ \ \
+  if \ \nu > 1
+\end{align*}
+\begin{align*}
+  \ \ \ \
+  =
+  \sqrt{\dfrac{\psi\left(\nu-1\right)}{2\pi}}
+  exp
+  \left\{
+    -\dfrac{\psi\left(\nu-1\right)}{2}
+    \left( y - \underline{x}'\underline{w}\right)^2
+  \right\}
+\end{align*}
+
+\subsection{Therefore}
+
+\begin{align*}
+  \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp
+  & =
+  \sqrt{\dfrac{\psi\left(\nu-1\right)}{2\pi}}
+  exp
+  \left\{
+    -\dfrac{\psi\left(\nu-1\right)}{2}
+    \left( y - \underline{x}'\underline{w}\right)^2
+  \right\}\\ 
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Sigma \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{x} - \underline{\mu}\right)'
+    \Sigma^{-1}
+    \left( \underline{x} - \underline{\mu}\right)
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi\lambda}}
+  \exp
+  \left\{
+    - \dfrac{1}{2\lambda}
+    \left(y - \tau\right)^2
+  \right\} \\
+  & \times
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \Phi \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{w} - \underline{\theta}\right)'
+    \Phi^{-1}
+    \left( \underline{w} - \underline{\theta}\right)
+  \right\}
+\end{align*}
+\begin{align*}
+  \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp
+  & =
+  N_y\left(\underline{x}'\underline{w} ; \psi^{-1}\left(\nu-1\right)^{-1}\right)
+  N_{\underline{x}} \left( \underline{\mu} ; \Sigma\right)
+  N_{y} \left( \tau ; \lambda\right)
+  N_{\underline{w}} \left( \underline{\theta} ; \Phi\right)
+\end{align*}
+
+\end{document}

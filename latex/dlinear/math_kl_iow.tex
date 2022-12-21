@@ -1,0 +1,791 @@
+\documentclass[fleqn]{minimal}
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{color}
+
+\usetikzlibrary{shapes, backgrounds}
+
+\begin{document}
+
+\section{Calculate message to $F_{\underline{x}}$}
+
+\begin{align*}
+  \dfrac{\int \int \int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp \ dy \ d\underline{w}}
+  {
+    M\left(
+      F_{\underline{x}} \rightarrow
+      F_{\underline{x}, y, \underline{w}, p}
+    \right)
+  }
+\end{align*}
+
+\subsection{Approximate $\int B\left(F_{\underline{x}, y, \underline{w}, p}\right) dp$}
+
+\begin{align*}
+  N_y\left(\underline{x}'\underline{w} ; \psi^{-1}\left(\nu-1\right)^{-1}\right)
+  N_{\underline{x}} \left( \underline{\mu} ; \Sigma\right)
+  N_{y} \left( \tau ; \lambda\right)
+  N_{\underline{w}} \left( \underline{\theta} ; \Phi\right)
+  \approx
+  Q_{\underline{x}} Q_{y} Q_{\underline{w}}
+\end{align*}
+
+\textbf{With}
+\begin{align*}
+  Q_{\underline{x}} =
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \tilde{\Sigma} \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{x} - \underline{\tilde{\mu}}\right)'
+    \tilde{\Sigma}^{-1}
+    \left( \underline{x} - \underline{\tilde{\mu}}\right)
+  \right\}
+\end{align*}
+\begin{align*}
+  Q_y =
+  \dfrac{1}{\sqrt{2\pi\tilde{\lambda}}}
+  \exp
+  \left\{
+    - \dfrac{1}{2\tilde{\lambda}}
+    \left(y - \tilde{\tau}\right)^2
+  \right\}
+\end{align*}
+\begin{align*}
+  Q_{\underline{w}} =
+  \dfrac{1}{\sqrt{2\pi}}
+  \left| \tilde{\Phi} \right|^{-1/2}
+  \exp
+  \left\{
+    - \dfrac{1}{2}
+    \left( \underline{w} - \underline{\tilde{\theta}}\right)'
+    \tilde{\Phi}^{-1}
+    \left( \underline{w} - \underline{\tilde{\theta}}\right)
+  \right\}
+\end{align*}
+
+\subsection{Minimize KL divergence}
+
+\begin{align*}
+  KL =
+  \int \int \int
+  Q_{\underline{x}} Q_{y} Q_{\underline{w}}
+  \ log
+  \dfrac
+  {
+    Q_{\underline{x}} Q_{y} Q_{\underline{w}}
+  }
+  {
+    N_y\left(\underline{x}'\underline{w} ; \psi^{-1}\left(\nu-1\right)^{-1}\right)
+    N_{\underline{x}} \left( \underline{\mu} ; \Sigma\right)
+    N_{y} \left( \tau ; \lambda\right)
+    N_{\underline{w}} \left( \underline{\theta} ; \Phi\right)
+  }
+  d\underline{x} \ dy \ d\underline{w}
+\end{align*}
+
+\begin{align*}
+  \ \ \ \ \ \
+  = 
+  \int \int \int Q_{\underline{x}} Q_{y} Q_{\underline{w}}  
+  log \left(
+    Q_{\underline{x}} Q_{y} Q_{\underline{w}}  
+  \right)
+  d\underline{x} \ dy \ d\underline{w}
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \int \int \int Q_{\underline{x}} Q_{y} Q_{\underline{w}}  
+  log \left(
+    \sqrt{\dfrac{\psi\left(\nu-1\right)}{2\pi}}
+    exp
+    \left\{
+      -\dfrac{\psi\left(\nu-1\right)}{2}
+      \left( y - \underline{x}'\underline{w}\right)^2
+    \right\}
+  \right)
+  d\underline{x} \ dy \ d\underline{w}
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \int \int \int Q_{\underline{x}} Q_{y} Q_{\underline{w}}  
+  log \left(
+    \dfrac{1}{\sqrt{2\pi}}
+    \left| \Sigma \right|^{-1/2}
+    \exp
+    \left\{
+      - \dfrac{1}{2}
+      \left( \underline{x} - \underline{\mu}\right)'
+      \Sigma^{-1}
+      \left( \underline{x} - \underline{\mu}\right)
+    \right\}
+  \right)
+  d\underline{x} \ dy \ d\underline{w}
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \int \int \int Q_{\underline{x}} Q_{y} Q_{\underline{w}}  
+  log \left(
+    \dfrac{1}{\sqrt{2\pi\lambda}}
+    \exp
+    \left\{
+      - \dfrac{1}{2\lambda}
+      \left(y - \tau\right)^2
+    \right\}
+  \right)
+  d\underline{x} \ dy \ d\underline{w}
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \int \int \int Q_{\underline{x}} Q_{y} Q_{\underline{w}}  
+  log \left(
+    \dfrac{1}{\sqrt{2\pi}}
+    \left| \Phi \right|^{-1/2}
+    \exp
+    \left\{
+      - \dfrac{1}{2}
+      \left( \underline{w} - \underline{\theta}\right)'
+      \Phi^{-1}
+      \left( \underline{w} - \underline{\theta}\right)
+    \right\}
+  \right)
+  d\underline{x} \ dy \ d\underline{w}
+\end{align*}
+
+\begin{align*}
+  \ \ \ \ \ \
+  = 
+  E_{Q_{\underline{x}}}
+  \left[
+    log \left(
+      \dfrac{1}{\sqrt{2\pi}}
+      \left| \tilde{\Sigma} \right|^{-1/2}
+      \exp
+      \left\{
+        - \dfrac{1}{2}
+        \left( \underline{x} - \underline{\tilde{\mu}}\right)'
+        \tilde{\Sigma}^{-1}
+        \left( \underline{x} - \underline{\tilde{\mu}}\right)
+      \right\}
+    \right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + 
+  E_{Q_{y}}
+  \left[
+    log \left(
+      \dfrac{1}{\sqrt{2\pi\tilde{\lambda}}}
+      \exp
+      \left\{
+        - \dfrac{1}{2\tilde{\lambda}}
+        \left(y - \tilde{\tau}\right)^2
+      \right\}
+    \right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  +
+  E_{Q_{\underline{w}}}
+  \left[
+    log \left(
+      \dfrac{1}{\sqrt{2\pi}}
+      \left| \tilde{\Phi} \right|^{-1/2}
+      \exp
+      \left\{
+        - \dfrac{1}{2}
+        \left( \underline{w} - \underline{\tilde{\theta}}\right)'
+        \tilde{\Phi}^{-1}
+        \left( \underline{w} - \underline{\tilde{\theta}}\right)
+      \right\}
+    \right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - E_{Q_{\underline{x}} Q_{y} Q_{\underline{w}}}
+  \left[
+    log \left(
+      \sqrt{\dfrac{\psi\left(\nu-1\right)}{2\pi}}
+      exp
+      \left\{
+        -\dfrac{\psi\left(\nu-1\right)}{2}
+        \left( y - \underline{x}'\underline{w}\right)^2
+      \right\}
+    \right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - E_{Q_{\underline{x}} }
+  \left[
+    log \left(
+      \dfrac{1}{\sqrt{2\pi}}
+      \left| \Sigma \right|^{-1/2}
+      \exp
+      \left\{
+        - \dfrac{1}{2}
+        \left( \underline{x} - \underline{\mu}\right)'
+        \Sigma^{-1}
+        \left( \underline{x} - \underline{\mu}\right)
+      \right\}
+    \right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - E_{Q_{y}}
+  \left[
+    log \left(
+      \dfrac{1}{\sqrt{2\pi\lambda}}
+      \exp
+      \left\{
+        - \dfrac{1}{2\lambda}
+        \left(y - \tau\right)^2
+      \right\}
+    \right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+   - E_{Q_{\underline{w}}}
+  \left[
+    log \left(
+      \dfrac{1}{\sqrt{2\pi}}
+      \left| \Phi \right|^{-1/2}
+      \exp
+      \left\{
+        - \dfrac{1}{2}
+        \left( \underline{w} - \underline{\theta}\right)'
+        \Phi^{-1}
+        \left( \underline{w} - \underline{\theta}\right)
+      \right\}
+    \right)
+  \right]
+\end{align*}
+
+\begin{align*}
+  \ \ \ \ \ \
+  \propto
+  - \dfrac{1}{2}
+  E_{Q_{\underline{x}}}
+  \left[
+    log \left| \tilde{\Sigma} \right|
+  \right]
+  - \dfrac{1}{2}
+  E_{Q_{\underline{x}}}
+  \left[
+    \left( \underline{x} - \underline{\tilde{\mu}}\right)'
+    \tilde{\Sigma}^{-1}
+    \left( \underline{x} - \underline{\tilde{\mu}}\right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \dfrac{1}{2}
+  E_{Q_{y}}
+  \left[
+    log \left(
+      \tilde{\lambda}
+    \right)
+  \right]
+  - \dfrac{1}{2\tilde{\lambda}}
+  E_{Q_{y}}
+  \left[
+    \left(y - \tilde{\tau}\right)^2
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \dfrac{1}{2}
+  E_{Q_{\underline{w}}}
+  \left[
+    log \left| \tilde{\Phi} \right|
+  \right]
+  - \dfrac{1}{2}
+  E_{Q_{\underline{w}}}
+  \left[
+    \left( \underline{w} - \underline{\tilde{\theta}}\right)'
+    \tilde{\Phi}^{-1}
+    \left( \underline{w} - \underline{\tilde{\theta}}\right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2} E_{Q_{\underline{x}} Q_{y} Q_{\underline{w}}}
+  \left[
+    \psi\left(\nu-1\right)
+    \left( y - \underline{x}'\underline{w}\right)^2
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2} E_{Q_{\underline{x}} }
+  \left[
+    \left( \underline{x} - \underline{\mu}\right)'
+    \Sigma^{-1}
+    \left( \underline{x} - \underline{\mu}\right)
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2} E_{Q_{y}}
+  \left[
+    \dfrac{1}{\lambda}
+    \left(y - \tau\right)^2
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2} E_{Q_{\underline{w}}}
+  \left[
+    \left( \underline{w} - \underline{\theta}\right)'
+    \Phi^{-1}
+    \left( \underline{w} - \underline{\theta}\right)
+  \right]
+\end{align*}
+
+\begin{align*}
+  \ \ \ \ \ \
+  \propto
+  - \dfrac{1}{2}
+  log \left| \tilde{\Sigma} \right|
+  - \dfrac{1}{2}
+  E_{Q_{\underline{x}}}
+  \left[
+    \underline{x}'\tilde{\Sigma}^{-1}\underline{x}
+    - 2 \underline{x}'\tilde{\Sigma}^{-1}\underline{\tilde{\mu}}
+    + \underline{\tilde{\mu}}'\tilde{\Sigma}^{-1}\underline{\tilde{\mu}}
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \dfrac{1}{2}
+  log \left(
+    \tilde{\lambda}
+  \right)
+  - \dfrac{1}{2\tilde{\lambda}}
+  E_{Q_{y}}
+  \left[
+    y^2 - 2 y\tilde{\tau} + \tilde{\tau}^2
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  - \dfrac{1}{2}
+  log \left| \tilde{\Phi} \right|
+  - \dfrac{1}{2}
+  E_{Q_{\underline{w}}}
+  \left[
+    \underline{w}'\tilde{\Phi}^{-1}\underline{w}
+    - 2 \underline{w}'\tilde{\Phi}^{-1}\underline{\tilde{\theta}}
+    + \underline{\tilde{\theta}}'\tilde{\Phi}^{-1}\underline{\tilde{\theta}}
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2}
+  \psi\left(\nu-1\right)
+  E_{Q_{\underline{x}} Q_{y} Q_{\underline{w}}}
+  \left[
+    y^2 - 2y\underline{x}'\underline{w} + \underline{x}'\underline{w}\underline{x}'\underline{w}
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2} E_{Q_{\underline{x}} }
+  \left[
+    \underline{x}'\Sigma^{-1}\underline{x}
+    -2 \underline{x}'\Sigma^{-1}\underline{\mu}
+    + \underline{\mu}'\Sigma^{-1}\underline{\mu}
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2}
+  \dfrac{1}{\lambda}
+  E_{Q_{y}}
+  \left[
+    y^2 - 2y\tau + \tau^2
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{2} E_{Q_{\underline{w}}}
+  \left[
+    \underline{w}' \Phi^{-1}\underline{w}
+    -2 \underline{w}' \Phi^{-1}\underline{\theta}
+    + \underline{\theta}' \Phi^{-1}\underline{\theta}
+  \right]
+\end{align*}
+
+\begin{align*}
+  \ \ \ \ \ \
+  \propto
+  - log \left| \tilde{\Sigma} \right|
+  - log \left(
+    \tilde{\lambda}
+  \right)
+  - log \left| \tilde{\Phi} \right|
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \psi\left(\nu-1\right)
+  \left[
+    \tilde{\lambda} + \tilde{\tau}^2
+    - 2\tilde{\tau}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+    + \underline{x}'\underline{w}\underline{w}'\underline{x}
+    + Tr \left( \tilde{\Sigma}\tilde{\Phi}\right)
+    + \underline{\tilde{\theta}}'\tilde{\Sigma}\underline{\tilde{\theta}}
+    + \underline{\tilde{\mu}}'\tilde{\Phi}\underline{\tilde{\mu}}
+    + \underline{\tilde{\theta}}'\underline{\tilde{\mu}}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \left[
+    Tr \left( \tilde{\Sigma}\Sigma^{-1}\right)
+    + \underline{\tilde{\mu}}'\Sigma^{-1}\underline{\tilde{\mu}}
+    -2 \underline{\tilde{\mu}}'\Sigma^{-1}\underline{\mu}
+    + \underline{\mu}'\Sigma^{-1}\underline{\mu}
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \dfrac{1}{\lambda}
+  \left[
+    \tilde{\lambda} + \tilde{\tau}^2 - 2\tilde{\tau}\tau + \tau^2
+  \right]
+\end{align*}
+\begin{align*}
+  \ \ \ \ \ \ \ \ \ \
+  + \left[
+    Tr\left(\tilde{\Phi} \Phi^{-1}\right)
+    + \underline{\tilde{\theta}}'\Phi^{-1}\underline{\tilde{\theta}}
+    -2 \underline{\tilde{\theta}}' \Phi^{-1}\underline{\theta}
+    + \underline{\theta}' \Phi^{-1}\underline{\theta}
+  \right]
+\end{align*}
+
+\subsection{Derivative relative to $\tilde{\Phi}$}
+
+\begin{align*}
+  \dfrac{d}{d\tilde{\Phi}}KL
+  = & - \dfrac{d}{d\tilde{\Phi}} log \left| \tilde{\Phi} \right|\\
+  & + \dfrac{d}{d\tilde{\Phi}}
+  \psi\left(\nu-1\right)
+  \left[
+    \tilde{\lambda}^2 + \tilde{\tau}^2
+    - 2\tilde{\tau}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+    + \underline{x}'\underline{w}\underline{w}'\underline{x}
+    + Tr \left( \tilde{\Sigma}\tilde{\Phi}\right)
+    + \underline{\tilde{\theta}}'\tilde{\Sigma}\underline{\tilde{\theta}}
+    + \underline{\tilde{\mu}}'\tilde{\Phi}\underline{\tilde{\mu}}
+    + \underline{\tilde{\theta}}'\underline{\tilde{\mu}}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right] \\
+  & + \dfrac{d}{d\tilde{\Phi}}
+  \left[
+    Tr\left(\tilde{\Phi} \Phi^{-1}\right)
+    + \underline{\tilde{\theta}}'\Phi^{-1}\underline{\tilde{\theta}}
+    -2 \underline{\tilde{\theta}}' \Phi^{-1}\underline{\theta}
+    + \underline{\theta}' \Phi^{-1}\underline{\theta}
+  \right]
+\end{align*}
+\begin{align*}
+  \therefore
+  - \tilde{\Phi}^{-1}
+  + \psi\left(\nu-1\right)
+  \left[
+    \tilde{\Sigma}
+    + \underline{\tilde{\mu}}\underline{\tilde{\mu}}'
+  \right]
+  + \Phi^{-1}
+  =0 
+\end{align*}
+\begin{align*}
+  \therefore
+  \tilde{\Phi}^{-1}
+  =
+  \Phi^{-1} 
+  + \psi\left(\nu-1\right)
+  \left[
+    \tilde{\Sigma}
+    + \underline{\tilde{\mu}}\underline{\tilde{\mu}}'
+  \right]
+\end{align*}
+
+\subsection{Derivative relative to $\underline{\tilde{\theta}}$}
+
+\begin{align*}
+  \dfrac{d}{d\underline{\tilde{\theta}}}KL
+  = & \dfrac{d}{d\underline{\tilde{\theta}}}
+  \psi\left(\nu-1\right)
+  \left[
+    \tilde{\lambda}^2 + \tilde{\tau}^2
+    - 2\tilde{\tau}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+    + \underline{x}'\underline{w}\underline{w}'\underline{x}
+    + Tr \left( \tilde{\Sigma}\tilde{\Phi}\right)
+    + \underline{\tilde{\theta}}'\tilde{\Sigma}\underline{\tilde{\theta}}
+    + \underline{\tilde{\mu}}'\tilde{\Phi}\underline{\tilde{\mu}}
+    + \underline{\tilde{\theta}}'\underline{\tilde{\mu}}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right] \\
+  &+ \dfrac{d}{d\underline{\tilde{\theta}}}
+  \left[
+    Tr\left(\tilde{\Phi} \Phi^{-1}\right)
+    + \underline{\tilde{\theta}}'\Phi^{-1}\underline{\tilde{\theta}}
+    -2 \underline{\tilde{\theta}}' \Phi^{-1}\underline{\theta}
+    + \underline{\theta}' \Phi^{-1}\underline{\theta}
+  \right]
+\end{align*}
+\begin{align*}
+  \therefore
+  \psi\left(\nu-1\right)
+  \left[
+    - 2 \tilde{\tau}\underline{\tilde{\mu}}
+    + 2 \tilde{\Sigma}\underline{\tilde{\theta}}
+    + 2 \underline{\tilde{\mu}}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right]
+  + \left[
+    2 \Phi^{-1}\underline{\tilde{\theta}}
+    -2 \Phi^{-1}\underline{\theta}
+  \right]
+  = 0
+\end{align*}
+\begin{align*}
+  \therefore
+  \psi\left(\nu-1\right)
+  \left[
+    \tilde{\Sigma}\underline{\tilde{\theta}}
+    + \underline{\tilde{\mu}}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right]
+  + \Phi^{-1}\underline{\tilde{\theta}}
+  =
+  \psi\left(\nu-1\right)
+  \tilde{\tau}\underline{\tilde{\mu}}
+  + \Phi^{-1}\underline{\theta}
+\end{align*}
+\begin{align*}
+  \therefore
+  \left[
+    \psi\left(\nu-1\right)
+    \left(
+      \tilde{\Sigma}
+      + \underline{\tilde{\mu}}\underline{\tilde{\mu}}'
+    \right)
+    + \Phi^{-1}
+  \right]\underline{\tilde{\theta}}
+  =
+  \psi\left(\nu-1\right)
+  \tilde{\tau}\underline{\tilde{\mu}}
+  + \Phi^{-1}\underline{\theta}
+\end{align*}
+\begin{align*}
+  \therefore
+  \tilde{\Phi}^{-1}\underline{\tilde{\theta}}
+  =
+  \Phi^{-1}\underline{\theta}
+  + \psi\left(\nu-1\right)
+  \tilde{\tau}\underline{\tilde{\mu}}
+\end{align*}
+
+\subsection{Similarly, derivative relative to $\tilde{\Sigma}$}
+
+\begin{align*}
+  \dfrac{d}{d\tilde{\Sigma}}KL
+  = 0
+\end{align*}
+\begin{align*}
+  \therefore
+  \tilde{\Sigma}^{-1}
+  =
+  \Sigma^{-1} 
+  + \psi\left(\nu-1\right)
+  \left[
+    \tilde{\Phi}
+    + \underline{\tilde{\theta}}\underline{\tilde{\theta}}'
+  \right]
+\end{align*}
+
+\subsection{Similarly, derivative relative to $\underline{\tilde{\mu}}$}
+
+\begin{align*}
+  \dfrac{d}{d\underline{\tilde{\mu}}}KL
+  = 0
+\end{align*}
+\begin{align*}
+  \therefore
+  \tilde{\Sigma}^{-1}\underline{\tilde{\mu}}
+  =
+  \Sigma^{-1}\underline{\mu}
+  + \psi\left(\nu-1\right)
+  \tilde{\tau}\underline{\tilde{\theta}}
+\end{align*}
+
+\subsection{Derivative relative to $\tilde{\lambda}$}
+
+\begin{align*}
+  \dfrac{d}{d\tilde{\lambda}}KL
+  = &
+  - \dfrac{d}{d\tilde{\lambda}} log \left(
+    \tilde{\lambda}
+  \right)
+  \\
+  & + \psi\left(\nu-1\right)
+  \dfrac{d}{d\tilde{\lambda}}
+  \left[
+    \tilde{\lambda}
+  \right] \\
+  & + \dfrac{1}{\lambda}
+  \dfrac{d}{d\tilde{\lambda}}
+  \left[
+    \tilde{\lambda}
+  \right]
+\end{align*}
+\begin{align*}
+  \therefore
+  \dfrac{1}{\tilde{\lambda}}
+  =
+  \psi\left(\nu-1\right)
+  + \dfrac{1}{\lambda}
+\end{align*}
+
+\subsection{Derivative relative to $\tilde{\tau}$}
+
+\begin{align*}
+  \dfrac{d}{d\tilde{\tau}}KL
+  = &
+  \psi\left(\nu-1\right)
+  \dfrac{d}{d\tilde{\tau}}
+  \left[
+    \tilde{\lambda} + \tilde{\tau}^2
+    - 2\tilde{\tau}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+    + \underline{x}'\underline{w}\underline{w}'\underline{x}
+    + Tr \left( \tilde{\Sigma}\tilde{\Phi}\right)
+    + \underline{\tilde{\theta}}'\tilde{\Sigma}\underline{\tilde{\theta}}
+    + \underline{\tilde{\mu}}'\tilde{\Phi}\underline{\tilde{\mu}}
+    + \underline{\tilde{\theta}}'\underline{\tilde{\mu}}\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right] \\
+  &
+  + \dfrac{1}{\lambda}
+  \dfrac{d}{d\tilde{\tau}}
+  \left[
+    \tilde{\lambda} + \tilde{\tau}^2 - 2\tilde{\tau}\tau + \tau^2
+  \right]
+\end{align*}
+\begin{align*}
+  \therefore
+  \psi\left(\nu-1\right)
+  \left[
+    2\tilde{\tau}
+    - 2\underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  \right]
+  + \dfrac{1}{\lambda}
+  \left[
+    2\tilde{\tau} - 2\tau
+  \right]
+  =0
+\end{align*}
+\begin{align*}
+  \therefore
+  \psi\left(\nu-1\right)
+  \tilde{\tau}
+  + \dfrac{1}{\lambda}
+  \tilde{\tau}
+  =
+  \psi\left(\nu-1\right)
+  \underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  + \dfrac{1}{\lambda}
+  \tau
+\end{align*}
+\begin{align*}
+  \therefore
+  \left[
+    \psi\left(\nu-1\right)
+    + \dfrac{1}{\lambda}
+  \right]\tilde{\tau}
+  =
+  \psi\left(\nu-1\right)
+  \underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  + \dfrac{1}{\lambda}
+  \tau
+\end{align*}
+\begin{align*}
+  \therefore
+  \dfrac{1}{\tilde{\lambda}}
+  \tilde{\tau}
+  =
+  \dfrac{1}{\lambda}
+  \tau
+  +\psi\left(\nu-1\right)
+  \underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+\end{align*}
+
+\subsection{Final equations}
+
+\begin{align*}
+  \therefore
+  \left[
+    \psi\left(\nu-1\right)
+    + \dfrac{1}{\lambda}
+  \right]\tilde{\tau}
+  =
+  \psi\left(\nu-1\right)
+  \underline{\tilde{\mu}}'\underline{\tilde{\theta}}
+  + \dfrac{1}{\lambda}
+  \tau
+\end{align*}
+\begin{align*}
+  \therefore
+  \dfrac{1}{\tilde{\lambda}}
+  =
+  \psi\left(\nu-1\right)
+  + \dfrac{1}{\lambda}
+\end{align*}
+
+\begin{align*}
+  \therefore
+  \tilde{\Sigma}^{-1}\underline{\tilde{\mu}}
+  =
+  \Sigma^{-1}\underline{\mu}
+  + \psi\left(\nu-1\right)
+  \tilde{\tau}\underline{\tilde{\theta}}
+\end{align*}
+\begin{align*}
+  \therefore
+  \tilde{\Sigma}^{-1}
+  =
+  \Sigma^{-1} 
+  + \psi\left(\nu-1\right)
+  \left[
+    \tilde{\Phi}
+    + \underline{\tilde{\theta}}\underline{\tilde{\theta}}'
+  \right]
+\end{align*}
+
+\begin{align*}
+  \therefore
+  \tilde{\Phi}^{-1}\underline{\tilde{\theta}}
+  =
+  \Phi^{-1}\underline{\theta}
+  + \psi\left(\nu-1\right)
+  \tilde{\tau}\underline{\tilde{\mu}}
+\end{align*}
+\begin{align*}
+  \therefore
+  \tilde{\Phi}^{-1}
+  =
+  \Phi^{-1} 
+  + \psi\left(\nu-1\right)
+  \left[
+    \tilde{\Sigma}
+    + \underline{\tilde{\mu}}\underline{\tilde{\mu}}'
+  \right]
+\end{align*}
+
+\end{document}
